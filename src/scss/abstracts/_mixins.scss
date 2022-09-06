@@ -1,0 +1,38 @@
+@use "./variables" as *;
+
+// Mixin for flex containers
+@mixin flex(
+  $direction: row,
+  $align-items: center,
+  $justify-content: center,
+  $gap: 0
+) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: $align-items;
+  justify-content: $justify-content;
+  grid-gap: $gap;
+}
+
+// Mixin for maximum width containers
+@mixin max-container($width) {
+  max-width: min($width, 100%);
+  margin-inline: auto;
+}
+
+// Mixin to manage responsive breakpoints
+@mixin respond-to($breakpoint) {
+  // If the key exists in the map
+  @if map-has-key($breakpoints, $breakpoint) {
+    // Prints a media query based on the value
+    @media (min-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  }
+
+  // If the key doesn't exist in the map
+  @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+    +"Available breakpoints are: #{map-keys($breakpoints)}.";
+  }
+}
