@@ -73,7 +73,7 @@ select {
 /* Font family */
 /* Breakpoints */
 /* For centering */
-.form-group__fixed-input {
+.stepper__step, .form-group__fixed-input {
   display: grid;
   place-content: center;
 }
@@ -147,6 +147,53 @@ body {
 .form-group__error-message {
   color: #ec2745;
   margin-top: 0.25rem;
+}
+
+.stepper {
+  --stepper-gap: 2.5rem;
+  --stepper-step-size: 3rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  grid-gap: var(--stepper-gap);
+}
+.stepper__step {
+  width: var(--stepper-step-size);
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  background-color: #664de6;
+  color: white;
+  position: relative;
+}
+.stepper__step:not(:last-of-type)::before, .stepper__step:not(:last-of-type)::after {
+  content: "";
+  width: var(--stepper-gap);
+  height: 1px;
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+}
+.stepper__step:not(:last-of-type)::before {
+  background-color: #dadbe2;
+}
+.stepper__step:not(:last-of-type)::after {
+  background-color: #664de6;
+  transition: width 150ms ease;
+}
+.stepper__step.active:not(:last-of-type)::after {
+  width: calc(var(--stepper-gap) * 0.5);
+  background-color: #664de6;
+  transition-delay: 150ms;
+}
+.stepper__step.active ~ .stepper__step:not(:last-of-type)::after {
+  width: 0;
+}
+.stepper__step.active ~ .stepper__step {
+  background-color: transparent;
+  color: #151b28;
+  border: 1px solid #dadbe2;
 }
 
 /*# sourceMappingURL=main.css.map */

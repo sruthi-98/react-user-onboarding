@@ -1,0 +1,55 @@
+@use "../abstracts/" as *;
+
+.stepper {
+  --stepper-gap: 2.5rem;
+  --stepper-step-size: 3rem;
+
+  @include flex($gap: var(--stepper-gap));
+
+  &__step {
+    @extend %center;
+
+    width: var(--stepper-step-size);
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    background-color: hsl($clr-primary);
+    color: hsl($clr-white);
+    position: relative;
+
+    &:not(:last-of-type)::before,
+    &:not(:last-of-type)::after {
+      content: "";
+      width: var(--stepper-gap);
+      height: 1px;
+      position: absolute;
+      top: 50%;
+      left: 100%;
+      transform: translateY(-50%);
+    }
+
+    &:not(:last-of-type)::before {
+      background-color: hsl($clr-text-accent);
+    }
+
+    &:not(:last-of-type)::after {
+      background-color: hsl($clr-primary);
+      transition: width 150ms ease;
+    }
+
+    &.active:not(:last-of-type)::after {
+      width: calc(var(--stepper-gap) * 0.5);
+      background-color: hsl($clr-primary);
+      transition-delay: 150ms;
+    }
+
+    &.active ~ .stepper__step:not(:last-of-type)::after {
+      width: 0;
+    }
+
+    &.active ~ .stepper__step {
+      background-color: transparent;
+      color: hsl($clr-text-primary);
+      border: 1px solid hsl($clr-text-accent);
+    }
+  }
+}
