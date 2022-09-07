@@ -1,8 +1,6 @@
 @use "../abstracts/" as *;
 
 .form-group {
-  padding: 1rem;
-
   &__label {
     display: inline-block;
     color: hsl($clr-text-form);

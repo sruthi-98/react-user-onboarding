@@ -96,9 +96,6 @@ body {
   border-radius: 5px;
 }
 
-.form-group {
-  padding: 1rem;
-}
 .form-group__label {
   display: inline-block;
   color: #465167;
