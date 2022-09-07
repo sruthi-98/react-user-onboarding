@@ -72,6 +72,12 @@ select {
 /* Colors */
 /* Font family */
 /* Breakpoints */
+/* For centering */
+.form-group__fixed-input {
+  display: grid;
+  place-content: center;
+}
+
 body {
   font-family: Inter;
 }
@@ -88,6 +94,59 @@ body {
   background-color: #664de6;
   color: white;
   border-radius: 5px;
+}
+
+.form-group {
+  padding: 1rem;
+}
+.form-group__label {
+  display: inline-block;
+  color: #465167;
+  margin-bottom: 0.25rem;
+}
+.form-group__optional {
+  color: #dadbe2;
+  margin-left: 0.25rem;
+}
+.form-group__input-container {
+  height: 2.5rem;
+  width: 100%;
+  display: flex;
+  border: 0.5px solid #dadbe2;
+  border-radius: 5px;
+}
+.form-group__input, .form-group__fixed-input {
+  padding-inline: 1rem;
+}
+.form-group__input {
+  width: 100%;
+  border: none;
+  color: #465167;
+  border-radius: inherit;
+}
+.form-group__input::placeholder {
+  color: hsla(220 19% 34% / 0.75);
+}
+.form-group__input:hover {
+  outline: 1px solid #664de6;
+}
+.form-group__input:focus-visible {
+  outline: 2px solid #664de6;
+}
+.form-group__input[data-error=true] {
+  outline: 2px solid #ec2745;
+}
+.form-group__fixed-input {
+  color: #a5adc5;
+  background-color: #eef0f6;
+}
+.form-group__fixed-input ~ .form-group__input {
+  border-radius: 0 5px 5px 0;
+  border-left: 0.5px solid #dadbe2;
+}
+.form-group__error-message {
+  color: #ec2745;
+  margin-top: 0.25rem;
 }
 
 /*# sourceMappingURL=main.css.map */

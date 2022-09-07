@@ -1,0 +1,68 @@
+@use "../abstracts/" as *;
+
+.form-group {
+  padding: 1rem;
+
+  &__label {
+    display: inline-block;
+    color: hsl($clr-text-form);
+    margin-bottom: 0.25rem;
+  }
+
+  &__optional {
+    color: hsl($clr-text-accent);
+    margin-left: 0.25rem;
+  }
+
+  &__input-container {
+    height: 2.5rem;
+    width: 100%;
+    display: flex;
+    border: 0.5px solid hsl($clr-text-accent);
+    border-radius: 5px;
+  }
+
+  &__input,
+  &__fixed-input {
+    padding-inline: 1rem;
+  }
+
+  &__input {
+    width: 100%;
+    border: none;
+    color: hsl($clr-text-form);
+    border-radius: inherit;
+
+    &::placeholder {
+      color: #{"hsla(#{$clr-text-form} / 0.75)"};
+    }
+
+    &:hover {
+      outline: 1px solid hsl($clr-primary);
+    }
+
+    &:focus-visible {
+      outline: 2px solid hsl($clr-primary);
+    }
+
+    &[data-error="true"] {
+      outline: 2px solid hsl($clr-warning);
+    }
+  }
+
+  &__fixed-input {
+    @extend %center;
+    color: hsl(225, 22%, 71%);
+    background-color: hsl(227, 33%, 95%);
+
+    ~ .form-group__input {
+      border-radius: 0 5px 5px 0;
+      border-left: 0.5px solid hsl($clr-text-accent);
+    }
+  }
+
+  &__error-message {
+    color: hsl($clr-warning);
+    margin-top: 0.25rem;
+  }
+}
