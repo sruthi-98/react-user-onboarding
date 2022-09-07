@@ -1,0 +1,16 @@
+@use "../abstracts/" as *;
+
+.button {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+
+  &--primary {
+    width: 100%;
+    height: 2.5rem;
+    padding-inline: 2rem;
+    background-color: hsl($clr-primary);
+    color: hsl($clr-white);
+    border-radius: 5px;
+  }
+}
