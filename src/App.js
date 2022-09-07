@@ -1,5 +1,5 @@
-const App = () => {
-  return <div className="app"></div>;
-};
+import Onboarding from "pages/Onboarding";
+
+const App = () => <Onboarding />;
 
 export default App;
