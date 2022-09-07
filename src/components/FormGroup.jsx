@@ -4,7 +4,9 @@ const FormGroup = ({
   error,
   fixedInput,
   formLabel,
+  handleChange,
   inputPlaceholder,
+  inputValue,
   optional = false,
 }) => {
   return (
@@ -19,8 +21,10 @@ const FormGroup = ({
           className="form-group__input"
           data-error={error ? true : false}
           id={formLabel}
+          onChange={handleChange}
           placeholder={inputPlaceholder}
           type="text"
+          value={inputValue}
         />
       </div>
       {error && <p className="form-group__error-message">Please enter this field</p>}
