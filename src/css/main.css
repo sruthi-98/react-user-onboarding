@@ -149,6 +149,31 @@ body {
   margin-top: 0.25rem;
 }
 
+.option-card {
+  cursor: pointer;
+  padding: 1rem;
+  border: 0.5px solid #dadbe2;
+  width: max-content;
+  border-radius: 5px;
+}
+.option-card.selected {
+  border-color: #664de6;
+}
+.option-card.selected .option-card__icon path {
+  fill: #664de6;
+}
+.option-card__icon {
+  margin-bottom: 0.5rem;
+}
+.option-card__heading {
+  color: #465167;
+  margin-bottom: 0.25rem;
+}
+.option-card__desc {
+  color: #6b768e;
+  max-width: 15ch;
+}
+
 .stepper {
   --stepper-gap: 2.5rem;
   --stepper-step-size: 3rem;

@@ -1,0 +1,31 @@
+@use "../abstracts/" as *;
+
+.option-card {
+  cursor: pointer;
+  padding: 1rem;
+  border: 0.5px solid hsl($clr-text-accent);
+  width: max-content;
+  border-radius: 5px;
+
+  &.selected {
+    border-color: hsl($clr-primary);
+
+    .option-card__icon path {
+      fill: hsl($clr-primary);
+    }
+  }
+
+  &__icon {
+    margin-bottom: 0.5rem;
+  }
+
+  &__heading {
+    color: hsl($clr-text-form);
+    margin-bottom: 0.25rem;
+  }
+
+  &__desc {
+    color: hsl(222, 14%, 49%);
+    max-width: 15ch;
+  }
+}
