@@ -78,6 +78,11 @@ select {
   place-content: center;
 }
 
+/* For bold font */
+.option-card__heading, .form-group__label, .button {
+  font-weight: 600;
+}
+
 body {
   font-family: Inter;
 }

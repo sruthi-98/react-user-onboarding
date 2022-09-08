@@ -1,6 +1,7 @@
 @use "../abstracts/" as *;
 
 .button {
+  @extend %font-bold;
   cursor: pointer;
   border: none;
   background-color: transparent;

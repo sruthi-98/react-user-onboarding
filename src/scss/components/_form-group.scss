@@ -2,6 +2,7 @@
 
 .form-group {
   &__label {
+    @extend %font-bold;
     display: inline-block;
     color: hsl($clr-text-form);
     margin-bottom: 0.25rem;

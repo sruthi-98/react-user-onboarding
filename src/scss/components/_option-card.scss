@@ -20,6 +20,7 @@
   }
 
   &__heading {
+    @extend %font-bold;
     color: hsl($clr-text-form);
     margin-bottom: 0.25rem;
   }
