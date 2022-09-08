@@ -77,9 +77,24 @@ const OnboardingForm = ({ activeStep, moveToNextStep }) => {
           />
         )
       )}
-      {FORM_STEPS[activeStep]?.options?.map(({ desc, heading, Icon }) => (
-        <OptionCard desc={desc} heading={heading} Icon={Icon} />
-      ))}
+      {FORM_STEPS[activeStep]?.optionKey && (
+        <div className="onboarding-form__options">
+          {FORM_STEPS[activeStep]?.options?.map(
+            ({ desc, heading, Icon, value }, index) => (
+              <OptionCard
+                desc={desc}
+                handleClick={() =>
+                  setFormKey(FORM_STEPS[activeStep].optionKey, value)
+                }
+                heading={heading}
+                Icon={Icon}
+                key={index}
+                selected={formState[FORM_STEPS[activeStep].optionKey] === value}
+              />
+            )
+          )}
+        </div>
+      )}
       <Button
         buttonLabel={
           FORM_STEPS.length - 1 === activeStep
