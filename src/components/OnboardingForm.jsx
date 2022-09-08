@@ -1,46 +1,76 @@
 import React, { useState } from "react";
 
-import Button from "./Button";
+import Button from "components/Button";
+import FormGroup from "components/FormGroup";
+import OptionCard from "components/OptionCard";
 import FORM_STEPS from "data/formSteps";
-import FormGroup from "./FormGroup";
-import OptionCard from "./OptionCard";
 
-const createInitialFormState = () => {
+const createInitialFormState = (error = false) => {
   let state = {};
   FORM_STEPS.forEach((formStep) => {
     if (formStep.fields)
       formStep.fields.forEach((field) => {
-        state[field.key] = "";
+        state[field.key] = error ? false : "";
       });
-    if (formStep.optionKey) state[formStep.optionKey] = "";
+    if (formStep.optionKey && !error)
+      state[formStep.optionKey] = formStep?.options?.[0]?.value;
   });
   return state;
 };
 
 const OnboardingForm = ({ activeStep, moveToNextStep }) => {
   const [formState, setFormState] = useState(() => createInitialFormState());
+  const [errorState, setErrorState] = useState(() =>
+    createInitialFormState(true)
+  );
 
-  const setFormKey = (formKey, formValue) => {
-    setFormState((prevFormState) => ({
-      ...prevFormState,
-      [formKey]: formValue,
+  const setKey = (key, value, setState) => {
+    setState((prevState) => ({
+      ...prevState,
+      [key]: value,
     }));
+  };
+
+  const setErrorKey = (errorKey, errorValue) =>
+    setKey(errorKey, errorValue, setErrorState);
+
+  const setFormKey = (formKey, formValue) =>
+    setKey(formKey, formValue, setFormState);
+
+  const setFieldError = () => {
+    let isFieldErrorExists = false;
+    if (!FORM_STEPS[activeStep]?.fields) return isFieldErrorExists;
+
+    const newErrorState = { ...errorState };
+    for (let { key, optional } of FORM_STEPS[activeStep]?.fields) {
+      if (formState[key].length || optional) continue;
+
+      newErrorState[key] = true;
+      isFieldErrorExists = true;
+    }
+
+    setErrorState(newErrorState);
+    return isFieldErrorExists;
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    moveToNextStep();
+    if (!setFieldError()) moveToNextStep();
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="onboarding-form" onSubmit={handleSubmit}>
       {FORM_STEPS[activeStep]?.fields?.map(
         ({ fixedInput, key, label, optional, placeholder }) => (
           <FormGroup
+            error={errorState[key]}
             fixedInput={fixedInput}
             formLabel={label}
             key={key}
-            handleChange={(event) => setFormKey(key, event.target.value)}
+            handleChange={(event) => {
+              if (errorState[key]) setErrorKey(key, false);
+              setFormKey(key, event.target.value);
+            }}
             inputPlaceholder={placeholder}
             inputValue={formState[key]}
             optional={optional}
