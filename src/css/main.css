@@ -153,9 +153,8 @@ body {
 
 .option-card {
   cursor: pointer;
-  padding: 1rem;
+  padding: 1.25rem;
   border: 0.5px solid #dadbe2;
-  width: max-content;
   border-radius: 5px;
 }
 .option-card.selected {

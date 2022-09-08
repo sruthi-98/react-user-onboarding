@@ -2,9 +2,8 @@
 
 .option-card {
   cursor: pointer;
-  padding: 1rem;
+  padding: 1.25rem;
   border: 0.5px solid hsl($clr-text-accent);
-  width: max-content;
   border-radius: 5px;
 
   &.selected {
@@ -26,7 +25,7 @@
   }
 
   &__desc {
-    color: hsl(222, 14%, 49%);
+    color: hsl($clr-text-neutral);
     max-width: 15ch;
   }
 }
