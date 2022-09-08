@@ -2,7 +2,11 @@
 
 .stepper {
   --stepper-gap: 2.5rem;
-  --stepper-step-size: 3rem;
+  --stepper-step-size: 2.5rem;
+
+  @include respond-to(small) {
+    --stepper-gap: 4rem;
+  }
 
   @include flex($gap: var(--stepper-gap));
 

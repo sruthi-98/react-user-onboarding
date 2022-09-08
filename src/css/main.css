@@ -188,12 +188,17 @@ body {
 
 .stepper {
   --stepper-gap: 2.5rem;
-  --stepper-step-size: 3rem;
+  --stepper-step-size: 2.5rem;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   grid-gap: var(--stepper-gap);
+}
+@media (min-width: 40rem) {
+  .stepper {
+    --stepper-gap: 4rem;
+  }
 }
 .stepper__step {
   width: var(--stepper-step-size);
